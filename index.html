@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HomeHealth Billing Clarity | Medicare Billing Made Simple for Independent Agencies</title>
+  <meta name="description" content="Plain-English Medicare billing clarity for independent home health agencies. Understand the 2026 CMS rule changes, reduce denial risk, and stay compliant — without a full-time billing department." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sage: {
+              50: '#f4f7f4',
+              100: '#e4ede4',
+              200: '#c8dbc9',
+              300: '#9fbfa1',
+              400: '#6f9d72',
+              500: '#4d7e51',
+              600: '#3a6340',
+              700: '#2f5034',
+              800: '#27402b',
+              900: '#203524',
+            },
+            forest: {
+              700: '#1e3d2a',
+              800: '#162d1f',
+              900: '#0f1f15',
+            },
+            terra: {
+              100: '#f5ede6',
+              200: '#ead5c3',
+              300: '#d4aa87',
+              400: '#c08b5e',
+              500: '#a96f3d',
+            },
+            cream: '#faf8f4',
+            gold: '#c9a84c',
+          },
+          fontFamily: {
+            serif: ['Lora', 'Georgia', 'serif'],
+            sans: ['DM Sans', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: #faf8f4;
+      font-family: 'DM Sans', sans-serif;
+      color: #203524;
+    }
+
+    .font-serif { font-family: 'Lora', Georgia, serif; }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.4;
+    }
+
+    /* Nav */
+    .nav-scrolled {
+      background: rgba(250, 248, 244, 0.95);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(32,53,36,0.08);
+    }
+
+    /* Hero texture */
+    .hero-bg {
+      background-color: #f0f4f0;
+      background-image:
+        radial-gradient(ellipse at 70% 50%, rgba(77,126,81,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.06) 0%, transparent 50%);
+    }
+
+    /* Section divider */
+    .wavy-divider {
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    /* Cards */
+    .benefit-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .benefit-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(32,53,36,0.12);
+    }
+
+    /* Testimonial */
+    .testimonial-card {
+      transition: transform 0.3s ease;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-3px);
+    }
+
+    /* FAQ accordion */
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+    }
+    .faq-answer.open {
+      max-height: 400px;
+    }
+    .faq-chevron {
+      transition: transform 0.3s ease;
+    }
+    .faq-chevron.open {
+      transform: rotate(180deg);
+    }
+
+    /* CTA button */
+    .btn-primary {
+      background: #3a6340;
+      color: white;
+      padding: 0.875rem 2rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      background: #2f5034;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(58,99,64,0.35);
+    }
+
+    .btn-outline {
+      border: 1.5px solid #3a6340;
+      color: #3a6340;
+      padding: 0.875rem 2rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .btn-outline:hover {
+      background: #3a6340;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Step connector line */
+    .step-line {
+      position: absolute;
+      top: 28px;
+      left: calc(50% + 28px);
+      width: calc(100% - 56px);
+      height: 2px;
+      background: linear-gradient(to right, #9fbfa1, #c8dbc9);
+    }
+
+    /* Pricing card highlight */
+    .pricing-featured {
+      background: #1e3d2a;
+      color: white;
+      transform: scale(1.03);
+      box-shadow: 0 20px 60px rgba(30,61,42,0.25);
+    }
+
+    /* Highlight text */
+    .text-highlight {
+      position: relative;
+      display: inline;
+    }
+    .text-highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: rgba(201,168,76,0.3);
+      z-index: -1;
+      border-radius: 2px;
+    }
+
+    /* Fade in on scroll */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Mobile nav */
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: block; }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+============================================================ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4">
+  <div class="max-w-6xl mx-auto px-6 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-2">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="32" height="32" rx="8" fill="#3a6340"/>
+        <path d="M8 22 Q16 10 24 22" stroke="#c9a84c" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <circle cx="16" cy="12" r="3" fill="#faf8f4"/>
+        <path d="M10 26 h12" stroke="#9fbfa1" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <span class="font-serif font-semibold text-forest-800 text-lg leading-tight">HomeHealth<br/><span class="text-sage-600 text-sm font-normal">Billing Clarity</span></span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-sage-700">
+      <a href="#how-it-works" class="hover:text-sage-500 transition-colors">How It Works</a>
+      <a href="#benefits" class="hover:text-sage-500 transition-colors">Benefits</a>
+      <a href="#pricing" class="hover:text-sage-500 transition-colors">Pricing</a>
+      <a href="#faq" class="hover:text-sage-500 transition-colors">FAQ</a>
+    </div>
+
+    <div class="hidden md:flex items-center gap-4">
+      <a href="mailto:hello@homehealthbillingclarity.com" class="text-sm text-sage-600 hover:text-sage-800 transition-colors font-medium">Contact</a>
+      <a href="https://buy.stripe.com/dRm5kD6Tj31p2UabkveIw0k" class="btn-primary text-sm py-2.5 px-5">Get Started →</a>
+    </div>
+
+    <!-- Mobile hamburger -->
+    <button id="nav-toggle" class="md:hidden text-forest-700" aria-label="Menu">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden bg-cream border-t border-sage-100 px-6 py-4 space-y-3">
+    <a href="#how-it-works" class="block text-sage-700 font-medium py-1">How It Works</a>
+    <a href="#benefits" class="block text-sage-700 font-medium py-1">Benefits</a>
+    <a href="#pricing" class="block text-sage-700 font-medium py-1">Pricing</a>
+    <a href="#faq" class="block text-sage-700 font-medium py-1">FAQ</a>
+    <a href="https://buy.stripe.com/dRm5kD6Tj31p2UabkveIw0k" class="btn-primary block text-center mt-3">Get Started →</a>
+  </div>
+</nav>
+
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section class="hero-bg pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+
+      <!-- Copy -->
+      <div>
+        <div class="inline-flex items-center gap-2 bg-white border border-sage-200 rounded-full px-4 py-1.5 text-xs font-medium text-sage-600 mb-6 shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-sage-400 inline-block"></span>
+          Updated for CY 2026 CMS Home Health Final Rule
+        </div>
+
+        <h1 class="font-serif text-4xl md:text-5xl font-bold text-forest-800 leading-tight mb-6">
+          Medicare billing clarity,<br/>
+          <span class="text-highlight text-sage-600">finally written for you</span> —<br/>
+          not your billing consultant.
+        </h1>
+
+        <p class="text-sage-700 text-lg leading-relaxed mb-8 max-w-lg">
+          You became a home health agency owner to care for patients — not to decode 400-page CMS rule changes. Every month, we translate the rules that affect <em>your</em> agency into plain English, so you know exactly where you stand.
+        </p>
+
+        <div class="flex flex-wrap gap-4 mb-10">
+          <a href="https://buy.stripe.com/dRm5kD6Tj31p2UabkveIw0k" class="btn-primary">Start My Subscription — $247/mo →</a>
+          <a href="#how-it-works" class="btn-outline">See How It Works</a>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-6 text-sm text-sage-600">
+          <span class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            Plain English, no jargon
+          </span>
+          <span class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            Your agency's specific situation
+          </span>
+          <span class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            Cancel anytime
+          </span>
+        </div>
+      </div>
+
+      <!-- Hero illustration placeholder -->
+      <!-- ILLUSTRATION: A warm, hand-illustrated style scene. A home health nurse in scrubs sits at a desk with a steaming coffee mug, looking relieved as soft "clarity light beams" radiate from an open document on her laptop. In the background, a cozy home with a gentle glow. Color palette: sage greens, warm cream, soft gold. Style: Friendly editorial illustration, slightly textured, not photographic. -->
+      <div class="relative flex justify-center">
+        <div class="w-full max-w-md">
+          <svg viewBox="0 0 480 400" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full drop-shadow-xl">
+            <!-- Background circle -->
+            <circle cx="240" cy="200" r="180" fill="#e4ede4" opacity="0.5"/>
+            <!-- Desk surface -->
+            <rect x="60" y="260" width="360" height="20" rx="4" fill="#c8dbc9"/>
+            <!-- Desk legs -->
+            <rect x="90" y="278" width="12" height="60" rx="2" fill="#9fbfa1"/>
+            <rect x="378" y="278" width="12" height="60" rx="2" fill="#9fbfa1"/>
+            <!-- Laptop body -->
+            <rect x="140" y="190" width="200" height="130" rx="8" fill="#2f5034"/>
+            <rect x="148" y="198" width="184" height="114" rx="4" fill="#162d1f"/>
+            <!-- Screen glow -->
+            <rect x="152" y="202" width="176" height="106" rx="3" fill="#1e3d2a"/>
+            <!-- Document lines on screen -->
+            <rect x="165" y="215" width="80" height="6" rx="2" fill="#4d7e51" opacity="0.8"/>
+            <rect x="165" y="228" width="120" height="4" rx="2" fill="#3a6340" opacity="0.6"/>
+            <rect x="165" y="238" width="100" height="4" rx="2" fill="#3a6340" opacity="0.6"/>
+            <rect x="165" y="248" width="110" height="4" rx="2" fill="#3a6340" opacity="0.6"/>
+            <!-- Clarity light rays from screen -->
+            <line x1="240" y1="202" x2="200" y2="120" stroke="#c9a84c" stroke-width="1.5" opacity="0.4" stroke-dasharray="4 4"/>
+            <line x1="260" y1="202" x2="300" y2="110" stroke="#c9a84c" stroke-width="1.5" opacity="0.35" stroke-dasharray="4 4"/>
+            <line x1="250" y1="202" x2="250" y2="105" stroke="#c9a84c" stroke-width="2" opacity="0.5" stroke-dasharray="4 4"/>
+            <!-- Checkmark on screen -->
+            <circle cx="290" cy="240" r="18" fill="#3a6340"/>
+            <path d="M282 240 l6 6 l10 -12" stroke="#c9a84c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Laptop base -->
+            <rect x="120" y="318" width="240" height="10" rx="3" fill="#3a6340"/>
+            <!-- Coffee mug -->
+            <rect x="370" y="235" width="36" height="40" rx="6" fill="#a96f3d"/>
+            <path d="M406 248 Q420 248 420 255 Q420 262 406 262" stroke="#c08b5e" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <rect x="376" y="235" width="24" height="8" rx="2" fill="#c08b5e"/>
+            <!-- Steam from mug -->
+            <path d="M379 228 Q381 222 379 216" stroke="#9fbfa1" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+            <path d="M387 225 Q389 218 387 211" stroke="#9fbfa1" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+            <path d="M395 228 Q397 221 395 214" stroke="#9fbfa1" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+            <!-- Plant -->
+            <rect x="68" y="235" width="16" height="28" rx="3" fill="#a96f3d"/>
+            <ellipse cx="76" cy="220" rx="18" ry="22" fill="#3a6340"/>
+            <ellipse cx="60" cy="228" rx="12" ry="16" fill="#4d7e51"/>
+            <ellipse cx="92" cy="226" rx="12" ry="16" fill="#4d7e51"/>
+            <!-- Person (nurse silhouette) -->
+            <circle cx="240" cy="160" r="28" fill="#d4aa87"/>
+            <!-- Hair -->
+            <ellipse cx="240" cy="140" rx="28" ry="18" fill="#5d3a1a"/>
+            <!-- Scrubs body -->
+            <rect x="205" y="186" width="70" height="80" rx="10" fill="#3a6340"/>
+            <!-- Stethoscope hint -->
+            <path d="M230 196 Q240 210 250 196" stroke="#c9a84c" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <!-- Smile / face -->
+            <circle cx="233" cy="162" r="3" fill="#5d3a1a"/>
+            <circle cx="247" cy="162" r="3" fill="#5d3a1a"/>
+            <path d="M234 172 Q240 178 246 172" stroke="#5d3a1a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Wavy section divider -->
+<div class="wavy-divider" style="margin-top:-2px;">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:60px;">
+    <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#faf8f4"/>
+  </svg>
+</div>
+
+
+<!-- ============================================================
+     THE PROBLEM
+============================================================ -->
+<section class="py-20 px-6 bg-cream">
+  <div class="max-w-5xl mx-auto">
+    <div class="max-w-2xl mx-auto text-center mb-16 fade-in">
+      <p class="text-sage-500 text-sm font-semibold uppercase tracking-widest mb-3">Sound familiar?</p>
+      <h2 class="font-serif text-3xl md:text-4xl font-bold text-forest-800 leading-snug">
+        You got into home health to help people.<br/>
+        <span class="text-terra-400">Medicare billing got in the way.</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white rounded-2xl p-7 border border-sage-100 shadow-sm fade-in">
+        <!-- ILLUSTRATION: A stack of Medicare documents with a puzzled expression/question mark above them, warm editorial style -->
+        <div class="w-12 h-12 rounded-xl bg-terra-100 flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-terra-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"/>
+          </svg>
+        </div>
+        <h3 class="font-serif font-semibold text-forest-800 text-lg mb-2">The 2026 rules changed everything</h3>
+        <p class="text-sage-600 text-sm leading-relaxed">CMS rewrote the home health billing rulebook effective January 1, 2026 — OASIS, LUPA thresholds, face-to-face requirements, enrollment rules. It's a lot. And the official guidance reads like it was written by attorneys for attorneys.</p>
+      </div>
+
+      <div class="bg-white rounded-2xl p-7 border border-sage-100 shadow-sm fade-in">
+        <div class="w-12 h-12 rounded-xl bg-terra-100 flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-terra-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <h3 class="font-serif font-semibold text-forest-800 text-lg mb-2">Consultants cost a fortune</h3>
+        <p class="text-sage-600 text-sm leading-relaxed">Billing compliance attorneys and certified consultants charge $200–$500/hour. For a small independent agency operating on thin margins, that's not a realistic monthly expense — especially when you're not sure which questions to even ask.</p>
+      </div>
+
+      <div class="bg-white rounded-2xl p-7 border border-sage-100 shadow-sm fade-in">
+        <div class="w-12 h-12 rounded-xl bg-terra-100 flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-terra-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
+          </svg>
+        </div>
+        <h3 class="font-serif font-semibold text-forest-800 text-lg mb-2">One compliance slip can cost everything</h3>
+        <p class="text-sage-600 text-sm leading-relaxed">CMS's new retroactive revocation authority and shortened 30-day adverse action reporting window mean the cost of not knowing is higher than ever. A single enrollment misstep can threaten your ability to bill Medicare at all.</p>
+      </div>
+    </div>
+
+    <div class="text-center mt-12 fade-in">
+      <p class="font-serif text-xl text-forest-700 italic">"You shouldn't need a law degree to run a home health agency."</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     THE SOLUTION
+============================================================ -->
+<section class="py-20 px-6" style="background: linear-gradient(135deg, #1e3d2a 0%, #2f5034 60%, #3a6340 100%);">
+  <div class="max-w-5xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-14 items-center">
+      <div class="fade-in">
+        <p class="text-sage-300 text-sm font-semibold uppercase tracking-widest mb-3">The Solution</p>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-white leading-snug mb-6">
+          A monthly clarity report written for <em>your</em> agency. Not the industry. Not big chains.
+          <span class="text-gold"> You.</span>
+        </h2>
+        <p class="text-sage-200 leading-relaxed mb-6">
+          Each month, you fill out a short intake form telling us about your agency — your payer mix, patient volume, billing software, and biggest concerns. We analyze your situation against the current CMS home health rules and send you a plain-English report that tells you exactly what to watch for, what's changed, and what to prioritize.
+        </p>
+        <p class="text-sage-200 leading-relaxed mb-8">
+          No 400-page PDFs. No confusing billing codes. No consultant jargon. Just clear answers to the questions keeping you up at night.
+        </p>
+        <a href="https://buy.stripe.com/dRm5kD6Tj31p2UabkveIw0k" class="inline-flex items-center gap-2 bg-gold text-forest-900 font-semibold px-6 py-3 rounded-md hover:bg-yellow-400 transition-colors">
+          Get My First Report →
+        </a>
+      </div>
+
+      <!-- Solution illustration placeholder -->
+      <!-- ILLUSTRATION: An open envelope with a glowing document emerging from it, surrounded by small icons: a house, a checkmark, a shield, a clock. Warm gold and sage tones. Friendly, editorial style. -->
+      <div class="flex justify-center fade-in">
+        <svg viewBox="0 0 380 300" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full max-w-sm">
+          <!-- Envelope body -->
+          <rect x="40" y="100" width="300" height="180" rx="12" fill="#2f5034" stroke="#4d7e51" stroke-width="1.5"/>
+          <!-- Envelope flap lines -->
+          <path d="M40 100 L190 175 L340 100" stroke="#4d7e51" stroke-width="1.5" fill="none"/>
+          <!-- Document emerging -->
+          <rect x="110" y="30" width="160" height="200" rx="8" fill="white" transform="rotate(-3 110 30)"/>
+          <rect x="118" y="50" width="100" height="8" rx="3" fill="#c8dbc9" transform="rotate(-3 118 50)"/>
+          <rect x="118" y="66" width="130" height="5" rx="2" fill="#e4ede4" transform="rotate(-3 118 66)"/>
+          <rect x="118" y="78" width="115" height="5" rx="2" fill="#e4ede4" transform="rotate(-3 118 78)"/>
+          <rect x="118" y="90" width="120" height="5" rx="2" fill="#e4ede4" transform="rotate(-3 118 90)"/>
+          <!-- Gold glow around document -->
+          <circle cx="190" cy="110" r="90" fill="#c9a84c" opacity="0.08"/>
+          <!-- Checkmark badge -->
+          <circle cx="270" cy="60" r="26" fill="#c9a84c"/>
+          <path d="M260 60 l7 7 l13 -16" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Small icons -->
+          <rect x="50" y="50" width="40" height="40" rx="8" fill="#3a6340"/>
+          <!-- House icon -->
+          <path d="M56 82 L56 65 L70 55 L84 65 L84 82 Z" stroke="#9fbfa1" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+          <rect x="64" y="72" width="12" height="10" rx="1" fill="#9fbfa1"/>
+          <!-- Shield icon -->
+          <rect x="300" y="180" width="40" height="40" rx="8" fill="#3a6340"/>
+          <path d="M320 187 L328 191 L328 202 Q320 208 312 202 L312 191 Z" stroke="#9fbfa1" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+          <path d="M316 198 l3 3 l5 -6" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     HOW IT WORKS
+============================================================ -->
+<section id="how-it-works" class="py-20 px-6 bg-cream">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-16 fade-in">
+      <p class="text-sage-500 text-sm font-semibold uppercase tracking-widest mb-3">Simple Process</p>
+      <h2 class="font-serif text-3xl md:text-4xl font-bold text-forest-800">How it works</h2>
+    </div>
+
+    <div class="grid md:grid-cols-4 gap-8">
+      <!-- Step 1 -->
+      <div class="relative text-center fade-in">
+        <div class="w-14 h-14 rounded-full bg-sage-600 text-white font-bold text-lg flex items-center justify-center mx-auto mb-4 shadow-md">1</div>
+        <h3 class="font-serif font-semibold text-forest-800 mb-2">Subscribe</h3>
+        <p class="text-sage-600 text-sm leading-relaxed">Sign up for $247/month. Cancel anytime — no contracts, no commitments.</p>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="relative text-center fade-in">
+        <div class="w-14 h-14 rounded-full bg-sage-600 text-white font-bold text-lg flex items-center justify-center mx-auto mb-4 shadow-md">2</div>
+        <h3 class="font-serif font-semibold text-forest-800 mb-2">Fill out your intake</h3>
+        <p class="text-sage-600 text-sm leading-relaxed">Complete a short monthly form about your agency — payer mix, patient count, and your top concerns. Takes about 5 minutes.</p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="relative text-center fade-in">
+        <div class="w-14 h-14 rounded-full bg-sage-600 text-white font-bold text-lg flex items-center justify-center mx-auto mb-4 shadow-md">3</div>
+        <h3 class="font-serif font-semibold text-forest-800 mb-2">We analyze your situation</h3>
+        <p class="text-sage-600 text-sm leading-relaxed">Our AI-powered analysis engine reviews your answers against the current CMS Home Health rules and identifies your specific risk areas.</p>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="relative text-center fade-in">
+        <div class="w-14 h-14 rounded-full bg-gold text-forest-900 font-bold text-lg flex items-center justify-center mx-auto mb-4 shadow-md">4</div>
+        <h3 class="font-serif font-semibold text-forest-800 mb-2">Receive your report</h3>
+        <p class="text-sage-600 text-sm leading-relaxed">Your plain-English clarity report lands in your inbox — covering what matters for your agency, in language you can actually act on.</p>
+      </div>
+    </div>
+
+    <div class="text-center mt-12 fade-in">
+      <a href="https://buy.stripe.com/dRm5kD6Tj31p2UabkveIw0k" class="btn-primary">Start Today →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     BENEFITS
+============================================================ -->
+<section id="benefits" class="py-20 px-6" style="background:#f0f4f0;">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-16 fade-in">
+      <p class="text-sage-500 text-sm font-semibold uppercase tracking-widest mb-3">What You Get</p>
+      <h2 class="font-serif text-3xl md:text-4xl font-bold text-forest-800">Built for independent agencies like yours</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="benefit-card bg-white rounded-2xl p-7 border border-sage-100 shadow-sm fade-in">
+        <div class="w-11 h-11 rounded-lg bg-sage-100 flex items-center justify-center mb-4">
+          <svg class="w-5 h-5 text-sage-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
+          </svg>
+        </div>
+        <h3 class="font-serif font-semibold text-forest-800 mb-2">OASIS & All-Payer Reporting Clarity</h3>
+        <p class="text-sage-600 text-sm leading-relaxed">Understand the 2026 all-payer OASIS reporting requirements and whether your current documentation practices are at risk — before a surveyor shows up.</p>
+      </div>
+
+      <div class="benefit-card bg-white rounded-2xl p-7 border border-sage-100 shadow-sm fade-in">
+        <div class="w-11 h-11 rounded-lg bg-sage-100 flex items-center justify-center mb-4">
+          <svg class="w-5 h-5 text-sage-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>
+          </svg>
+        </div>
+        <h3 class="font-serif font-semibold text-forest-800 mb-2">LUPA Threshold Analysis</h3>
+        <p class="text-sage-600 text-sm leading-relaxed">The 2026 recalibration changed LUPA thresholds across HHRG categories. We'll tell you exactly how your visit patterns compare and where you may be leaving reimbursement on the table.</p>
+      </div>
+
+      <div class="benefit-card bg-white rounded-2xl p-7 border border-sage-100 shadow-sm fade-in">
+        <div class="w-11 h-11 rounded-lg bg-sage-100 flex items-center justify-center mb-4">
+          <svg class="w-5 h-5 text-sage-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
+          </svg>
+        </div>
+        <h3 class="font-serif font-semibold text-forest-800 mb-2">Face-to-Face Compliance</h3>
+        <p class="text-sage-600 text-sm leading-relaxed">The 2026 rule expanded practitioner eligibility for face-to-face encounters. We'll explain what that means for your referral relationships and documentation requirements.</p>
+      </div>
+
+      <div class="benefit-card bg-white rounded-2xl p-7 border border-sage-100 shadow-sm fade-in">
+        <div class="w-11 h-11 rounded-lg bg-sage-100 flex items-center justify-center mb-4">
+          <svg class="w-5 h-5 text-sage-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+          </svg>
+        </div>
+        <h3 class="font-serif font-semibold text-forest-800 mb-2">Enrollment & Revocation Risk</h3>
+        <p class="text-sage-600 text-sm leading-relaxed">CMS's new 30-day adverse action reporting window and expanded retroactive revocation authority are agency-ending risks if you're not aware of them. We flag your exposure clearly.</p>
+      </div>
+
+      <div class="benefit-card bg-white rounded-2xl p-7 border border-sage-100 shadow-sm fade-in">
+        <div class="w-11 h-11 rounded-lg bg-sage-100 flex items-center justify-center mb-4">
+          <svg class="w-5 h-5 text-sage-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"/>
+          </svg>
+        </div>
+        <h3 class="font-serif font-semibold text-forest-800 mb-2">HHVBP Scoring Awareness</h3>
+        <p class="text-sage-600 text-sm leading-relaxed">The Home Health Value-Based Purchasing model now covers all 50 states. We'll explain how your payer mix and patient volume affect your performance scoring and what it means for your reimbursement.</p>
+      </div>
+
+      <div class="benefit-card bg-white rounded-2xl p-7 border border-sage-100 shadow-sm fade-in">
+        <div class="w-11 h-11 rounded-lg bg-sage-100 flex items-center justify-center mb-4">
+          <svg class="w-5 h-5 text-sage-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
+          </svg>
+        </div>
+        <h3 class="font-serif font-semibold text-forest-800 mb-2">Built for Your Specific Situation</h3>
+        <p class="text-sage-600 text-sm leading-relaxed">This isn't a generic newsletter. Every report is generated based on your intake form — your state, your patient count, your payer mix, your concerns. Relevant, specific, and actionable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     TESTIMONIALS
+============================================================ -->
+<section class="py-20 px-6 bg-cream">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-16 fade-in">
+      <p class="text-sage-500 text-sm font-semibold uppercase tracking-widest mb-3">From Agency Owners</p>
+      <h2 class="font-serif text-3xl md:text-4xl font-bold text-forest-800">They were in the same place you are</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="testimonial-card bg-white rounded-2xl p-7 border border-sage-100 shadow-sm fade-in">
+        <div class="flex gap-1 mb-4">
+          <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+        <p class="text-forest-700 text-sm leading-relaxed mb-5 italic">"I've been running my agency for 11 years. When the 2026 rules dropped I was completely lost. The first report I got back actually made sense of the OASIS changes in a way I could act on. I shared it with my clinical director immediately."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-sage-200 flex items-center justify-center text-sage-700 font-bold text-sm">MR</div>
+          <div>
+            <p class="font-semibold text-forest-800 text-sm">Margaret R.</p>
+            <p class="text-sage-500 text-xs">Owner, 18-patient agency — Georgia</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card bg-white rounded-2xl p-7 border border-sage-100 shadow-sm fade-in">
+        <div class="flex gap-1 mb-4">
+          <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+        <p class="text-forest-700 text-sm leading-relaxed mb-5 italic">"The revocation risk section hit home. I had no idea the adverse action reporting window changed to 30 days. We updated our internal process immediately. That one piece of information alone was worth the subscription."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-terra-200 flex items-center justify-center text-terra-500 font-bold text-sm">DL</div>
+          <div>
+            <p class="font-semibold text-forest-800 text-sm">Darnell L.</p>
+            <p class="text-sage-500 text-xs">Administrator, 25-patient agency — Ohio</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card bg-white rounded-2xl p-7 border border-sage-100 shadow-sm fade-in">
+        <div class="flex gap-1 mb-4">
+          <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+        <p class="text-forest-700 text-sm leading-relaxed mb-5 italic">"I'm a nurse first and a business owner second. This service lets me stay that way. I understand my billing situation now without having to become a billing specialist. It gives me confidence when I talk to my MAC."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-sage-100 flex items-center justify-center text-sage-600 font-bold text-sm">PW</div>
+          <div>
+            <p class="font-semibold text-forest-800 text-sm">Patricia W., RN</p>
+            <p class="text-sage-500 text-xs">Owner/operator, 12-patient agency — Tennessee</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     PRICING
+============================================================ -->
+<section id="pricing" class="py-20 px-6" style="background:#f0f4f0;">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-16 fade-in">
+      <p class="text-sage-500 text-sm font-semibold uppercase tracking-widest mb-3">Simple Pricing</p>
+      <h2 class="font-serif text-3xl md:text-4xl font-bold text-forest-800">One plan. Everything included.</h2>
+      <p class="text-sage-600 mt-3 max-w-xl mx-auto">No tiers, no upsells, no hidden fees. One monthly subscription gives you everything — your personalized report, updated 2026 rule analysis, and ongoing access as CMS guidance evolves.</p>
+    </div>
+
+    <div class="max-w-sm mx-auto fade-in">
+      <div class="pricing-featured rounded-2xl p-9 text-center">
+        <p class="text-sage-300 text-sm font-semibold uppercase tracking-widest mb-2">Monthly Subscription</p>
+        <div class="mb-2">
+          <span class="font-serif text-5xl font-bold text-white">$247</span>
+          <span class="text-sage-300 text-lg">/month</span>
+        </div>
+        <p class="text-sage-300 text-sm mb-8">Cancel anytime. No long-term contract.</p>
+
+        <ul class="text-left space-y-3 mb-9">
+          <li class="flex items-start gap-3 text-sm text-sage-100">
+            <svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Monthly personalized Medicare billing clarity report
+          </li>
+          <li class="flex items-start gap-3 text-sm text-sage-100">
+            <svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            CY 2026 CMS Home Health Final Rule analysis
+          </li>
+          <li class="flex items-start gap-3 text-sm text-sage-100">
+            <svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            OASIS, LUPA, face-to-face, and enrollment coverage
+          </li>
+          <li class="flex items-start gap-3 text-sm text-sage-100">
+            <svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Your specific concerns addressed each month
+          </li>
+          <li class="flex items-start gap-3 text-sm text-sage-100">
+            <svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Plain English — no billing jargon
+          </li>
+          <li class="flex items-start gap-3 text-sm text-sage-100">
+            <svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Updates as CMS guidance changes throughout the year
+          </li>
+        </ul>
+
+        <a href="https://buy.stripe.com/dRm5kD6Tj31p2UabkveIw0k" class="block w-full bg-gold text-forest-900 font-bold py-3.5 rounded-lg hover:bg-yellow-400 transition-colors text-center">
+          Start My Subscription →
+        </a>
+
+        <p class="text-sage-400 text-xs mt-4">Secure checkout via Stripe. Cancel anytime.</p>
+      </div>
+    </div>
+
+    <div class="mt-10 text-center fade-in">
+      <p class="text-sage-600 text-sm max-w-lg mx-auto">
+        <strong class="text-forest-700">Not legal or billing advice.</strong> HomeHealthBillingClarity is an educational and analytical service. Reports are designed to help you understand the rules and your exposure — not to substitute for a licensed healthcare billing compliance attorney or certified medical billing specialist. We always recommend consulting a qualified professional for specific compliance decisions.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FAQ
+============================================================ -->
+<section id="faq" class="py-20 px-6 bg-cream">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-14 fade-in">
+      <p class="text-sage-500 text-sm font-semibold uppercase tracking-widest mb-3">Questions</p>
+      <h2 class="font-serif text-3xl md:text-4xl font-bold text-forest-800">Frequently asked</h2>
+    </div>
+
+    <div class="space-y-3 fade-in" id="faq-container">
+
+      <div class="faq-item bg-white rounded-xl border border-sage-100 overflow-hidden">
+        <button class="faq-trigger w-full flex items-center justify-between px-6 py-5 text-left font-medium text-forest-800 hover:text-sage-600 transition-colors">
+          <span>Who is this service for?</span>
+          <svg class="faq-chevron w-5 h-5 text-sage-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-answer px-6">
+          <p class="text-sage-600 text-sm leading-relaxed pb-5">HomeHealthBillingClarity is built for owners and administrators of small independent home health agencies — typically 1 to 30 staff, primarily billing Medicare. If you're part of a large corporate chain with a dedicated compliance department, this service is probably not the right fit. If you're a nurse or caregiver who also runs the business and has to figure out billing as you go, this is made for you.</p>
+        </div>
+      </div>
+
+      <div class="faq-item bg-white rounded-xl border border-sage-100 overflow-hidden">
+        <button class="faq-trigger w-full flex items-center justify-between px-6 py-5 text-left font-medium text-forest-800 hover:text-sage-600 transition-colors">
+          <span>Is this legal or billing advice?</span>
+          <svg class="faq-chevron w-5 h-5 text-sage-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-answer px-6">
+          <p class="text-sage-600 text-sm leading-relaxed pb-5">No. HomeHealthBillingClarity is an educational and analytical service. We explain what the CMS rules say and what your situation looks like relative to those rules — in plain English. We are not a law firm, and our reports do not constitute legal advice, medical billing consultation, or compliance certification. Every report ends with a recommendation to consult a licensed healthcare billing compliance attorney or certified medical billing specialist for specific compliance decisions.</p>
+        </div>
+      </div>
+
+      <div class="faq-item bg-white rounded-xl border border-sage-100 overflow-hidden">
+        <button class="faq-trigger w-full flex items-center justify-between px-6 py-5 text-left font-medium text-forest-800 hover:text-sage-600 transition-colors">
+          <span>What does the monthly report actually cover?</span>
+          <svg class="faq-chevron w-5 h-5 text-sage-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-answer px-6">
+          <p class="text-sage-600 text-sm leading-relaxed pb-5">Each report covers: OASIS documentation and all-payer reporting requirements, LUPA threshold analysis based on your visit patterns, face-to-face encounter compliance, enrollment and revocation risk (including the new 30-day adverse action window), HHVBP scoring implications based on your payer mix, and any specific concerns you flagged in your monthly intake form. The report is written in plain English and tailored to your agency's specific situation.</p>
+        </div>
+      </div>
+
+      <div class="faq-item bg-white rounded-xl border border-sage-100 overflow-hidden">
+        <button class="faq-trigger w-full flex items-center justify-between px-6 py-5 text-left font-medium text-forest-800 hover:text-sage-600 transition-colors">
+          <span>How do I submit my information each month?</span>
+          <svg class="faq-chevron w-5 h-5 text-sage-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-answer px-6">
+          <p class="text-sage-600 text-sm leading-relaxed pb-5">After subscribing, you'll receive a link to your monthly intake form. It takes about 5 minutes to complete — you'll tell us about your agency's payer mix, patient count, billing software, and your top concerns for the month. Once submitted, your personalized report is generated and delivered to your inbox. No uploads, no lengthy questionnaires.</p>
+        </div>
+      </div>
+
+      <div class="faq-item bg-white rounded-xl border border-sage-100 overflow-hidden">
+        <button class="faq-trigger w-full flex items-center justify-between px-6 py-5 text-left font-medium text-forest-800 hover:text-sage-600 transition-colors">
+          <span>What are the 2026 CMS Home Health Final Rule changes?</span>
+          <svg class="faq-chevron w-5 h-5 text-sage-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-answer px-6">
+          <p class="text-sage-600 text-sm leading-relaxed pb-5">The CY 2026 Home Health Final Rule, effective January 1, 2026, includes significant changes: expanded all-payer OASIS reporting requirements, recalibrated LUPA thresholds across HHRG categories, updated face-to-face encounter practitioner eligibility, shortened adverse action reporting windows from 90 to 30 days, new retroactive revocation authority for CMS, and expanded HHVBP model coverage to all 50 states. Each of these changes has implications for how independent agencies document, bill, and maintain their Medicare enrollment status.</p>
+        </div>
+      </div>
+
+      <div class="faq-item bg-white rounded-xl border border-sage-100 overflow-hidden">
+        <button class="faq-trigger w-full flex items-center justify-between px-6 py-5 text-left font-medium text-forest-800 hover:text-sage-600 transition-colors">
+          <span>Can I cancel anytime?</span>
+          <svg class="faq-chevron w-5 h-5 text-sage-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-answer px-6">
+          <p class="text-sage-600 text-sm leading-relaxed pb-5">Yes. There are no long-term contracts and no cancellation fees. You can cancel your subscription at any time through your billing portal. If you cancel, you'll retain access through the end of your current billing period.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FINAL CTA
+============================================================ -->
+<section class="py-24 px-6" style="background: linear-gradient(135deg, #162d1f 0%, #1e3d2a 50%, #2f5034 100%);">
+  <div class="max-w-3xl mx-auto text-center fade-in">
+    <!-- ILLUSTRATION: Small decorative SVG of a home with a warm glow, surrounded by soft sage leaf accents. Minimal, icon-style. -->
+    <div class="flex justify-center mb-6">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="32" fill="#2f5034"/>
+        <path d="M12 36 L32 18 L52 36" stroke="#c9a84c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <rect x="20" y="36" width="24" height="16" rx="2" fill="#3a6340"/>
+        <rect x="28" y="42" width="8" height="10" rx="1" fill="#c9a84c"/>
+        <circle cx="32" cy="28" r="4" fill="#c9a84c" opacity="0.3"/>
+      </svg>
+    </div>
+    <h2 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4 leading-snug">
+      You built your agency to care for people.<br/>
+      <span class="text-gold">Let us handle the billing clarity.</span>
+    </h2>
+    <p class="text-sage-200 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
+      Stop guessing at what the 2026 rules mean for your agency. Get a plain-English report every month that tells you exactly where you stand — and what to do about it.
+    </p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a href="https://buy.stripe.com/dRm5kD6Tj31p2UabkveIw0k" class="inline-flex items-center gap-2 bg-gold text-forest-900 font-bold px-8 py-4 rounded-md hover:bg-yellow-400 transition-colors text-base">
+        Start My Subscription — $247/mo →
+      </a>
+    </div>
+    <p class="text-sage-400 text-sm mt-5">Cancel anytime. No contracts. Secure checkout via Stripe.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="bg-forest-900 text-sage-300 py-14 px-6">
+  <div class="max-w-5xl mx-auto">
+    <div class="grid md:grid-cols-3 gap-10 mb-10">
+      <!-- Brand -->
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="8" fill="#3a6340"/>
+            <path d="M8 22 Q16 10 24 22" stroke="#c9a84c" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <circle cx="16" cy="12" r="3" fill="#faf8f4"/>
+          </svg>
+          <span class="font-serif font-semibold text-white text-base">HomeHealth Billing Clarity</span>
+        </div>
+        <p class="text-sm text-sage-400 leading-relaxed">Plain-English Medicare billing clarity for independent home health agencies. Educational and analytical service — not legal or billing advice.</p>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <p class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Navigate</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#how-it-works" class="hover:text-white transition-colors">How It Works</a></li>
+          <li><a href="#benefits" class="hover:text-white transition-colors">Benefits</a></li>
+          <li><a href="#pricing" class="hover:text-white transition-colors">Pricing</a></li>
+          <li><a href="#faq" class="hover:text-white transition-colors">FAQ</a></li>
+          <li><a href="mailto:hello@homehealthbillingclarity.com" class="hover:text-white transition-colors">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Related resources -->
+      <div>
+        <p class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Related Resources</p>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a href="https://seniorcarecompliance.com" class="hover:text-white transition-colors flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-sage-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+              SeniorCareCompliance.com
+            </a>
+          </li>
+          <li>
+            <a href="https://clearphysicaltherapyrates.com" class="hover:text-white transition-colors flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-sage-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+              ClearPhysicalTherapyRates.com
+            </a>
+          </li>
+        </ul>
+        <div class="mt-6">
+          <a href="https://buy.stripe.com/dRm5kD6Tj31p2UabkveIw0k" class="inline-block bg-sage-600 text-white text-sm font-semibold px-5 py-2.5 rounded-md hover:bg-sage-500 transition-colors">Get Started →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-forest-700 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-sage-500">
+      <p>© 2026 Digital Services USA. HomeHealthBillingClarity.com. All rights reserved.</p>
+      <p class="text-center md:text-right max-w-md">This service provides educational and analytical information only. It does not constitute legal advice, medical billing consultation, or compliance certification. Consult a licensed professional for specific compliance decisions.</p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ============================================================
+     SCRIPTS
+============================================================ -->
+<script>
+  // Nav scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      navbar.classList.add('nav-scrolled');
+    } else {
+      navbar.classList.remove('nav-scrolled');
+    }
+  });
+
+  // Mobile menu toggle
+  document.getElementById('nav-toggle').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  });
+
+  // Close mobile menu on link click
+  document.querySelectorAll('#mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.remove('open');
+    });
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const answer = trigger.nextElementSibling;
+      const chevron = trigger.querySelector('.faq-chevron');
+      const isOpen = answer.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+      document.querySelectorAll('.faq-chevron').forEach(c => c.classList.remove('open'));
+
+      if (!isOpen) {
+        answer.classList.add('open');
+        chevron.classList.add('open');
+      }
+    });
+  });
+
+  // Scroll fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
